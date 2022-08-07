@@ -1,0 +1,13 @@
+{
+  "version": "2.0",
+  "logging": {
+    "logLevel": {
+      "RentSearcher": "Information"
+    }
+  },
+  "extensions": {
+    "queues": {
+      "messageEncoding": "none"
+    }
+  }
+}

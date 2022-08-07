@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentSearcher.Crawler", "RentSearcher.Crawler\RentSearcher.Crawler.csproj", "{308E1157-ECD8-44D3-A66E-103D678BADFF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentSearcher.IntegrationalTests", "RentSearcher.IntegrationalTests\RentSearcher.IntegrationalTests.csproj", "{6885F9F0-98A8-48BD-B8AB-634AE78E388A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BotFunctionWrapper", "Telegram\BotFunctionWrapper\BotFunctionWrapper.csproj", "{7407750B-0110-4233-9E78-AE3521461951}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TelegramMessageListener", "Telegram\TelegramMessageListener\TelegramMessageListener.csproj", "{C39165A5-26C6-46E9-85BD-73515FF1A920}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "Contracts\Contracts.csproj", "{A97604FB-A34E-4256-A625-11921CE37198}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentSearcher.Crawler.Tests", "RentSearcher.Crawler.Tests\RentSearcher.Crawler.Tests.csproj", "{9F872A05-721F-4A45-BA96-B0D545F2BA29}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{308E1157-ECD8-44D3-A66E-103D678BADFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{308E1157-ECD8-44D3-A66E-103D678BADFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{308E1157-ECD8-44D3-A66E-103D678BADFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{308E1157-ECD8-44D3-A66E-103D678BADFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6885F9F0-98A8-48BD-B8AB-634AE78E388A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6885F9F0-98A8-48BD-B8AB-634AE78E388A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6885F9F0-98A8-48BD-B8AB-634AE78E388A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6885F9F0-98A8-48BD-B8AB-634AE78E388A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7407750B-0110-4233-9E78-AE3521461951}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7407750B-0110-4233-9E78-AE3521461951}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7407750B-0110-4233-9E78-AE3521461951}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7407750B-0110-4233-9E78-AE3521461951}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C39165A5-26C6-46E9-85BD-73515FF1A920}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C39165A5-26C6-46E9-85BD-73515FF1A920}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C39165A5-26C6-46E9-85BD-73515FF1A920}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C39165A5-26C6-46E9-85BD-73515FF1A920}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A97604FB-A34E-4256-A625-11921CE37198}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A97604FB-A34E-4256-A625-11921CE37198}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A97604FB-A34E-4256-A625-11921CE37198}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A97604FB-A34E-4256-A625-11921CE37198}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F872A05-721F-4A45-BA96-B0D545F2BA29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F872A05-721F-4A45-BA96-B0D545F2BA29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F872A05-721F-4A45-BA96-B0D545F2BA29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F872A05-721F-4A45-BA96-B0D545F2BA29}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C47AA068-5CAE-4F74-92A6-DBE5C13730B7}
+	EndGlobalSection
+EndGlobal

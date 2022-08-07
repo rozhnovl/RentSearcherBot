@@ -1,0 +1,11 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=rentsearcher;AccountKey=bNjVPJbeWrmwJjTft0l8fxRB7oEsUPAGHFr4AS4rNc+KDVgy9E2Y1bIJlsrJpkGeikO0T4lB4o68+AStFyGNNQ==;EndpointSuffix=core.windows.net",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+    "botToken": "5403600357:AAHXvaNXOfuT2xb0PONOsZPtYs3SFSKXA6A",
+    "apiKey": "3RoNX7jJYlwBNxaJTdrdl16jXvA5H3JazcJhOAJvrs1mlUa7LxeKXA==",
+    "AzureStorageConnectionString": "DefaultEndpointsProtocol=https;AccountName=rentsearcher;AccountKey=bNjVPJbeWrmwJjTft0l8fxRB7oEsUPAGHFr4AS4rNc+KDVgy9E2Y1bIJlsrJpkGeikO0T4lB4o68+AStFyGNNQ==;EndpointSuffix=core.windows.net",
+    "TranslationServiceKey": "cc6ed24f767344e78893ac8bcf235e91"
+  }
+}
