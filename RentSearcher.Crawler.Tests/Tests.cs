@@ -1,17 +1,18 @@
 ﻿using RentSearcher.Crawler.Connectors;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using NUnit.Framework;
 
-namespace RentSearcher.Crawler.Tests
+namespace RentSearcher.Crawler.Tests;
+
+public class Tests
 {
-    public class Tests
+    [SetUp]
+    public void Setup()
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
+    }
 
-        const string detailsResponse = @"{
+    const string detailsResponse = @"{
     ""_embedded"": {
         ""calculator"": null,
         ""favourite"": {
@@ -1945,69 +1946,68 @@ namespace RentSearcher.Crawler.Tests
 }
 ";
 
-        [Test]
-        public void Test1()
-        {
-            var responseObject = JsonSerializer.Deserialize<SRealityEstateDetails>(detailsResponse);
+    [Test]
+    public void Test1()
+    {
+        var responseObject = JsonSerializer.Deserialize<SRealityEstateDetails>(detailsResponse);
 
-            Assert.IsNotEmpty(responseObject.text.value.GetString());
-            Assert.IsNotEmpty(responseObject._embedded.images);
-            Assert.IsTrue(responseObject.HasElevator);
-            Assert.AreEqual("4", responseObject.Floor);
-        }
-
-        [Test]
-        public void TranslatorTest()
-        {
-            var translatedContract = @"[{""translations"":[{""text"":""Предлагаем в аренду красивую квартиру 3+1 площадью 109 м2 на 1 этаже исторического дома в Виноградах, на улице Италии. Также подходит для соседей по комнате. <бр / > Планировка квартиры состоит из 3 отдельных комнат, просторной прихожей, кухни с полностью оборудованной кухней, 2 ванных комнат, одна с душем, а другая с ванной. Кухня и одна из комнат выходят в тихий внутренний двор. В апартаментах с роскошными деревянными полами. Оба номера полностью меблированы. <бр />Дом расположен в дворянском районе Винограды рядом с театром Винограды. В окрестностях есть полные гражданские удобства, услуги, рестораны, магазины, спортивные сооружения. Хорошо доступное место на метро и трамвае (Náměstí Míru и музей). Винограды окружены несколькими тщательно ухоженными парками. Ригровы сады находятся почти у дома, также можно прогуляться до Гребовки. Пешая доступность до центра занимает всего несколько минут. <br / > Плата за электроэнергию и коммунальные услуги добавляется к стоимости аренды."",""to"":""ru""}]}]";
-
-            TranslationResult[] deserializedOutput = JsonSerializer.Deserialize<TranslationResult[]>(translatedContract);
-
-            Assert.IsNotEmpty(deserializedOutput);
-        }
-        /// <summary>
-        /// The C# classes that represents the JSON returned by the Translator Text API.
-        /// </summary>
-        public class TranslationResult
-        {
-            public DetectedLanguage DetectedLanguage { get; set; }
-            public TextResult SourceText { get; set; }
-            [JsonPropertyName("translations")]
-            public Translation[] Translations { get; set; }
-        }
-
-        public class DetectedLanguage
-        {
-            public string Language { get; set; }
-            public float Score { get; set; }
-        }
-
-        public class TextResult
-        {
-            public string Text { get; set; }
-            public string Script { get; set; }
-        }
-
-        public class Translation
-        {
-            [JsonPropertyName("text")]
-            public string Text { get; set; }
-            public TextResult Transliteration { get; set; }
-            public string To { get; set; }
-            public Alignment Alignment { get; set; }
-            public SentenceLength SentLen { get; set; }
-        }
-
-        public class Alignment
-        {
-            public string Proj { get; set; }
-        }
-
-        public class SentenceLength
-        {
-            public int[] SrcSentLen { get; set; }
-            public int[] TransSentLen { get; set; }
-        }
-
+        Assert.IsNotEmpty(responseObject.text.value.GetString());
+        Assert.IsNotEmpty(responseObject._embedded.images);
+        Assert.IsTrue(responseObject.HasElevator);
+        Assert.AreEqual("4", responseObject.Floor);
     }
+
+    [Test]
+    public void TranslatorTest()
+    {
+        var translatedContract = @"[{""translations"":[{""text"":""Предлагаем в аренду красивую квартиру 3+1 площадью 109 м2 на 1 этаже исторического дома в Виноградах, на улице Италии. Также подходит для соседей по комнате. <бр / > Планировка квартиры состоит из 3 отдельных комнат, просторной прихожей, кухни с полностью оборудованной кухней, 2 ванных комнат, одна с душем, а другая с ванной. Кухня и одна из комнат выходят в тихий внутренний двор. В апартаментах с роскошными деревянными полами. Оба номера полностью меблированы. <бр />Дом расположен в дворянском районе Винограды рядом с театром Винограды. В окрестностях есть полные гражданские удобства, услуги, рестораны, магазины, спортивные сооружения. Хорошо доступное место на метро и трамвае (Náměstí Míru и музей). Винограды окружены несколькими тщательно ухоженными парками. Ригровы сады находятся почти у дома, также можно прогуляться до Гребовки. Пешая доступность до центра занимает всего несколько минут. <br / > Плата за электроэнергию и коммунальные услуги добавляется к стоимости аренды."",""to"":""ru""}]}]";
+
+        TranslationResult[] deserializedOutput = JsonSerializer.Deserialize<TranslationResult[]>(translatedContract);
+
+        Assert.IsNotEmpty(deserializedOutput);
+    }
+    /// <summary>
+    /// The C# classes that represents the JSON returned by the Translator Text API.
+    /// </summary>
+    public class TranslationResult
+    {
+        public DetectedLanguage DetectedLanguage { get; set; }
+        public TextResult SourceText { get; set; }
+        [JsonPropertyName("translations")]
+        public Translation[] Translations { get; set; }
+    }
+
+    public class DetectedLanguage
+    {
+        public string Language { get; set; }
+        public float Score { get; set; }
+    }
+
+    public class TextResult
+    {
+        public string Text { get; set; }
+        public string Script { get; set; }
+    }
+
+    public class Translation
+    {
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
+        public TextResult Transliteration { get; set; }
+        public string To { get; set; }
+        public Alignment Alignment { get; set; }
+        public SentenceLength SentLen { get; set; }
+    }
+
+    public class Alignment
+    {
+        public string Proj { get; set; }
+    }
+
+    public class SentenceLength
+    {
+        public int[] SrcSentLen { get; set; }
+        public int[] TransSentLen { get; set; }
+    }
+
 }
