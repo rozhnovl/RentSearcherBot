@@ -80,8 +80,11 @@ namespace BotFunctionWrapper
 
         protected ITelegramBotClient GetBotClient()
         {
+            var rateLimit = Policy.RateLimitAsync(30, TimeSpan.FromSeconds(1));
+            var retry = Policy.Handle<Exception>()
+                .WaitAndRetryAsync(new double[] { 1, 3, 7, 11, 19 }.Select(TimeSpan.FromSeconds));
             return new RetryingTelegramBotClient(new TelegramBotClient(botToken),
-                Policy.Handle<Exception>().WaitAndRetryAsync(new double[] { 1, 3, 7, 11, 19 }.Select(TimeSpan.FromSeconds)));
+                Policy.WrapAsync(rateLimit, retry));
         }
         
         public async Task TelegramBotCallbackInternal(string requestBody)
