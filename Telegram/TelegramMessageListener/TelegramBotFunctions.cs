@@ -50,14 +50,16 @@ namespace TelegramMessageListener
         public async Task OrderCreationMessageReceived([QueueTrigger("estatesaddedqueue")] QueueMessage message)
         {
             var request = JsonSerializer.Deserialize<EstateListing>(message.Body.ToString());
+            var translatedDescription = new Lazy<Task<string>>(() => new TranslatorClient(Log).TranslateTextRequest(
+                translationServiceKey,
+                "/translate?api-version=3.0&from=cs&to=ru",
+                request.Details?.Description));
             var client = GetBotClient();
             await ExecuteForEachUserAsync(async ui =>
             {
                 if (!ShouldUserGetListing(ui.Data, request))
                     return;
-                var description = await new TranslatorClient(Log).TranslateTextRequest(translationServiceKey,
-                     "/translate?api-version=3.0&from=cs&to=ru",
-                    request.Details?.Description);
+                var description = await translatedDescription.Value;
                 var messageText = $@"
 A new posting has been added on SReality:
 {request.name}

@@ -14,7 +14,7 @@ public class TranslatorClient{
         this.Log = log;
     }
 
-    private const string endpoint = "https://api.cognitive.microsofttranslator.com/";
+    private const string endpoint = "https://api.cognitive.microsofttranslator.com";
 
     private ILogger Log;
 
