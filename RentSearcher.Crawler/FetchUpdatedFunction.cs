@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -21,7 +22,6 @@ namespace RentSearcher.Crawler
         {
             this.tableServiceClient = tableServiceClient;
             this.queueServiceClient = queueServiceClient;
-            tableServiceClient.GetTableClient("EstateListings").CreateIfNotExists();
         }                        
 
         [FunctionName("FetchUpdatedFunction")]
@@ -44,15 +44,21 @@ namespace RentSearcher.Crawler
             {
                 var todayEntries = await new Sreality(log).FetchPageUrls();
                 log.LogInformation($"A total of {todayEntries.Count} have been fetched.");
-                foreach (var entry in todayEntries)
+                var tableClient = tableServiceClient.GetTableClient("EstateListings");
+                var queueClient = queueServiceClient.GetQueueClient("estatesaddedqueue");
+                await Task.WhenAll(todayEntries.Select(async entry =>
                 {
                     if (!(await TableEntryExists(entry)))
                     {
-                        var estateListing = new EstateListing(new Contracts.GpsLocation(entry.gps.lat, entry.gps.lon), entry.locality, entry.price, entry.name, entry.hash_id, await new Sreality(log).GetDetails(entry), entry.RoomNumber);
-                        await tableServiceClient.GetTableClient("EstateListings").AddEntityAsync(new EstateListingEntity(estateListing));
-                        await queueServiceClient.GetQueueClient("estatesaddedqueue").SendMessageAsync(Convert.ToBase64String(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(estateListing))));
+                        var estateListing = new EstateListing(new Contracts.GpsLocation(entry.gps.lat, entry.gps.lon),
+                            entry.locality, entry.price, entry.name, entry.hash_id,
+                            await new Sreality(log).GetDetails(entry), entry.RoomNumber);
+                        await tableClient
+                            .AddEntityAsync(new EstateListingEntity(estateListing));
+                        await queueClient.SendMessageAsync(
+                            Convert.ToBase64String(Encoding.UTF8.GetBytes(JsonSerializer.Serialize(estateListing))));
                     }
-                }
+                }));
             }
             catch(Exception e)
             {

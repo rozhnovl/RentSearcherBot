@@ -8,7 +8,8 @@ using Microsoft.Extensions.Logging;
 
 namespace TelegramMessageListener;
 
-public class TranslatorClient{
+public class TranslatorClient
+{
     public TranslatorClient(ILogger log)
     {
         this.Log = log;
@@ -26,7 +27,6 @@ public class TranslatorClient{
         {
             object[] body = new object[] { new { Text = inputText } };
             var requestBody = JsonSerializer.Serialize(body);
-
             using (var client = new HttpClient())
             using (var request = new HttpRequestMessage())
             {
